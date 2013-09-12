@@ -16,4 +16,9 @@ def show
       render 'new'
     end
   end
+  
+  def show
+    @user = User.find(params[:id])
+    @messages = @user.messages.paginate(page: params[:page])
+  end
 end
