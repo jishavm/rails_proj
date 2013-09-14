@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130912041901) do
+ActiveRecord::Schema.define(:version => 20130913031739) do
 
   create_table "messages", :force => true do |t|
     t.string   "message"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(:version => 20130912041901) do
   end
 
   add_index "messages", ["user_id", "created_at"], :name => "index_messages_on_patient_id_and_created_at"
+
+  create_table "patient_infos", :force => true do |t|
+    t.integer  "age"
+    t.string   "gender"
+    t.integer  "user_id"
+    t.integer  "doctor_id"
+    t.string   "anonymous"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

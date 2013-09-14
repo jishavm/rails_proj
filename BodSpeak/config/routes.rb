@@ -6,10 +6,14 @@ Bodspeak::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :messages, only: [:create, :destroy]
   
+  resources :doctors
+  
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
   get "static_pages/home"
+  
+  get "doctor/show"
 
   get "static_pages/help"
 

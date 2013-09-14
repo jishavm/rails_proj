@@ -16,6 +16,16 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
+	  <!-- Here starts the sidebar
+	  <%= f.fields_for :patient_infos do |p| %>
+	  <%= p.label :age, "Age" %>
+	  <%= p.text_field :age %>
+	  <%= p.label :anonymous, "Anonymous" %>
+	  <%= p.text_field :anonymous %>
+	  <%= p.label :gender, "Gender" %>
+	  <%= p.text_field :gender %>
+	  <% end %>
+	  -->
 
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>

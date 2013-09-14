@@ -8,7 +8,9 @@ def new
   if user && user.authenticate(params[:session][:password]) && user.user_type=='P'
     sign_in(user)
       redirect_to user
-  else
+	  elsif user && user.authenticate(params[:session][:password]) && user.user_type=='D'
+	  redirect_to doctor_show_path
+	  else
     flash.now[:error] = 'Invalid email/password combination'
       render 'new'
   end
