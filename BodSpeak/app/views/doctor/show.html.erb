@@ -1,4 +1,5 @@
 <% @user.each do |u| %>
-    <%= link_to u.name, u %><br/>
+<%= link_to u.name,Message.find_by_user_id(u) %>
+    <br/>
     <br/>
   <% end %>

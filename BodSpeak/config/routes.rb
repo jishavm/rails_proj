@@ -1,10 +1,19 @@
 Bodspeak::Application.routes.draw do
   #get "users/new"
   
-  resources :users
+  
+  resources :users do
+  collection do
+    get 'check_email'
+  end
+  end
+  
+  namespace :api do
+  resources :users, :defaults => { :format => 'xml' }
+  end
   
   resources :sessions, only: [:new, :create, :destroy]
-  resources :messages, only: [:create, :destroy]
+  resources :messages
   
   resources :doctors
   

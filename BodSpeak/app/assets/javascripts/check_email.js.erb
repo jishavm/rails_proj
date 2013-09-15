@@ -1,0 +1,28 @@
+$(document).ready(function() {
+
+    $("#user_email").bind( "ajax:success", function(evt, data, status, xhr) {
+
+        if (data.isavailable == false)
+        {
+            $('#email_check').html(data.email + ' is already taken');
+        }
+        else if ( data.isavailable == true )
+        {
+            $('#email_check').html('Email is available!');
+        }
+    });
+
+    // cancel Ajax call if input field empty
+    $("#user_email").live('ajax:before', function(){
+        if ($(this).val() == '') {
+            return false;
+        }
+    });
+
+    $("#user_email").focus(function(){
+        $('#email_check').empty();
+    });
+
+});
+
+

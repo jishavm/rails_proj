@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @message.message %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @message.user_id %>
+</p>
+<section>
+        <%= render 'shared/message_form' %>
+      </section>
+
+
+<%= link_to 'Back', messages_path %>

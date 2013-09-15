@@ -2,7 +2,7 @@
 <%= form_for :message, :url => {:action => :create} do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :message, placeholder: "Compose new micropost..." %>
+    <%= f.text_area :message, placeholder: "Type your message here..." %>
   </div>
-  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Send", class: "btn btn-large btn-primary" %>
 <% end %>

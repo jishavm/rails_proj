@@ -12,7 +12,6 @@ def show
     @user = User.new(params[:user])
 	respond_to do |format|
       if @user.save	  
-	  sign_in @user
 	  format.html { redirect_to(@user, :notice => 'Post created.') }  
        format.js 
 	#  flash[:success] = "Welcome to the Sample App!"
@@ -26,11 +25,10 @@ def show
   end
   
   def check_email
-    @user = User.find_by_email(params[:user]['email'])
-    result = Hash.new
-    result["isavailable"] = (@user == nil) ? true : false
-    result["email"] = params[:user]['email']
-    render json: result
+  puts "Inside Controller"
+  
+    @user = User.find_by_email(params[:user][:email])
+    respond_with(@user)
   end
   
   def show
@@ -42,7 +40,7 @@ end
 class Api::UsersController < ApplicationController
   http_basic_authenticate_with :name => "Jisha", :password => "password"
 
-  #skip_before_filter :authenticate_user! 
+  #skip_before_filter :authenticate_user! # we do not need devise authentication here
   before_filter :fetch_user, :except => [:index, :create]
 
  def fetch_user
