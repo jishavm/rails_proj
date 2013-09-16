@@ -1,42 +1,3 @@
-class UsersController < ApplicationController
-respond_to :html, :js
-def show
-    @user = User.find(params[:id])
-  end
-
-  def new
-    @user = User.new
-    end
-  
-  def create
-    @user = User.new(params[:user])
-	respond_to do |format|
-      if @user.save	  
-	  format.html { redirect_to(@user, :notice => 'Post created.') }  
-       format.js 
-	#  flash[:success] = "Welcome to the Sample App!"
-    #  redirect_to @user
-    else
-	format.html { render :action => "new" }  
-        format.js 
-      #render 'new'
-    end
-	end
-  end
-  
-  def check_email
-  puts "Inside Controller"
-  
-    @user = User.find_by_email(params[:user][:email])
-    respond_with(@user)
-  end
-  
-  def show
-@user = User.find(params[:id])
-    @messages = @user.messages.paginate(page: params[:page])
-  end
-end
-
 class Api::UsersController < ApplicationController
   http_basic_authenticate_with :name => "Jisha", :password => "password"
 
@@ -64,7 +25,10 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-   # @user.temp_password = Devise.friendly_token
+	#Giving a temporary password to create the user
+     @user.password='password'
+   @user.password_confirmation='password'
+   
     respond_to do |format|
       if @user.save
         format.json { render json: @user, status: :created }
@@ -78,7 +42,10 @@ class Api::UsersController < ApplicationController
 
   def update
     respond_to do |format|
+	
       if @user.update_attributes(params[:user])
+	  #@user.password='foobar'
+      #@user.password_confirmation='foobar'
         format.json { head :no_content, status: :ok }
         format.xml { head :no_content, status: :ok }
       else

@@ -31,13 +31,5 @@ describe User do
   it { should respond_to(:authenticate) }
   it { should respond_to(:messages) }
   
-  it "should destroy associated microposts" do
-      messages = @user.messages.dup
-      @user.destroy
-      messages.should_not be_empty
-      messages.each do |message|
-        Message.find_by_id(message.id).should be_nil
-      end
-    end
-end
+  end
 

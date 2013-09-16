@@ -16,26 +16,8 @@ describe "User pages" do
       end
     end
 
-    describe "with valid information" do
-      before do
-        fill_in "Name",         with: "Example User"
-        fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "foobar"
-        fill_in "Confirmation", with: "foobar"
-      end
-
-      it "should create a user" do
-        expect { click_button submit }.to change(User, :count).by(1)
-      end
-    end
+    
   end
+    
+  
 end
-describe "profile page" do
-let(:user) { FactoryGirl.create(:user) }
-  # Code to make a user variable
-  before { visit user_path(user) }
-
-  it { should have_selector('h1',    text: user.name) }
-  it { should have_selector('title', text: user.name) }
-end
-
