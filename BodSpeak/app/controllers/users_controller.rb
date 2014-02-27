@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+#User controller to create and maintain users.
 respond_to :html, :js
 def show
     @user = User.find(params[:id])
