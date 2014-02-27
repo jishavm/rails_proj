@@ -1,7 +1,8 @@
 class Api::UsersController < ApplicationController
+ #User controller to handle user -realted actions
+ 
   http_basic_authenticate_with :name => "Jisha", :password => "password"
 
-  #skip_before_filter :authenticate_user! # we do not need devise authentication here
   before_filter :fetch_user, :except => [:index, :create]
 
  def fetch_user
@@ -44,8 +45,7 @@ class Api::UsersController < ApplicationController
     respond_to do |format|
 	
       if @user.update_attributes(params[:user])
-	  #@user.password='foobar'
-      #@user.password_confirmation='foobar'
+
         format.json { head :no_content, status: :ok }
         format.xml { head :no_content, status: :ok }
       else
