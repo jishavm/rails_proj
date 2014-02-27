@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+#the message contrller takes care of all the messaging functionality in BodSpeak
   before_filter :signed_in_user
 
   def create
